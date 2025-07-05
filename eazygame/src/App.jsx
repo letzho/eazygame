@@ -35,7 +35,7 @@ export default function App() {
   useEffect(() => {
     const userId = getCurrentUser();
     if (isSignedIn && userId) {
-      fetch(`http://https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com//api/cards?user_id=${userId}`)
+      fetch(`http://https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards?user_id=${userId}`)
         .then(res => res.json())
         .then(data => setCards(data));
     } else {
@@ -46,7 +46,7 @@ export default function App() {
   useEffect(() => {
     const userId = getCurrentUser();
     if (isSignedIn && userId) {
-      fetch(`http://https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com//api/users/${userId}`)
+      fetch(`http://https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/users/${userId}`)
         .then(res => res.json())
         .then(data => setUser(data));
     }
