@@ -76,7 +76,7 @@ function clearSession() {
 }
 
 export async function signIn(username, password) {
-  const res = await fetch('http://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/login', {
+  const res = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/login', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password })
