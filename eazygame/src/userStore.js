@@ -90,7 +90,7 @@ export async function signIn(username, password) {
 
 export async function signUp(username, password) {
   // Register user in backend
-  const res = await fetch('http://localhost:3001/api/register', {
+  const res = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, password })
