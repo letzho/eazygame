@@ -1,0 +1,83 @@
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(123,92,255,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 1rem 1rem 1.2rem 1rem;
+  min-width: 220px;
+  max-width: 260px;
+  flex: 0 0 auto;
+  margin: 0 auto;
+}
+.imageBox {
+  width: 100%;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8fc;
+  border-radius: 12px;
+  margin-bottom: 0.7rem;
+}
+.image {
+  max-width: 80px;
+  max-height: 80px;
+  object-fit: contain;
+}
+.imagePlaceholder {
+  width: 60px;
+  height: 60px;
+  background: #e0e0f0;
+  border-radius: 10px;
+}
+.emojiIcon {
+  font-size: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.2rem;
+}
+.name {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.1rem;
+}
+.category {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.2rem;
+}
+.price {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.buyBtn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: stretch;
+  outline: none;
+}
+.buyBtn:active,
+.buyBtn:focus {
+  background: var(--primary-light);
+  border-radius: 10px;
+  outline: none;
+} 

@@ -1,0 +1,165 @@
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--background);
+  overflow: hidden;
+}
+
+.scrollableContent {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 1.2rem 1rem 1.2rem;
+  padding-bottom: 5rem;
+}
+.header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  padding: 2rem 1.2rem 1.2rem 1.2rem;
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  position: relative;
+}
+.appName {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+.greeting {
+  font-size: 1rem;
+  margin-top: 0.1rem;
+  opacity: 0.9;
+}
+.balanceLabel {
+  font-size: 0.95rem;
+  margin-top: 1.2rem;
+  opacity: 0.85;
+}
+.balance {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-top: 0.2rem;
+}
+.profileBtn {
+  background: rgba(255,255,255,0.18);
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  margin-left: 1rem;
+}
+.profileIcon {
+  font-size: 1.5rem;
+}
+.tabs {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 1.2rem;
+  margin-top: 1.2rem;
+}
+.tab {
+  font-size: 1rem;
+  color: #888;
+  margin-right: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid transparent;
+}
+.active {
+  color: var(--primary);
+  border-bottom: 2.5px solid var(--primary);
+  font-weight: 600;
+}
+.scanSection {
+  margin: 1.5rem 0 0 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.scanTitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+.scanSubtitle {
+  font-size: 0.95rem;
+  color: #888;
+  margin-bottom: 1.2rem;
+}
+.qrFrame {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #181c2f;
+  border-radius: 18px;
+  margin-bottom: 1.2rem;
+  border: 2px solid #2e3250;
+  box-shadow: 0 2px 16px rgba(24,28,47,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.orText {
+  margin: 1.2rem 0 0.5rem 0;
+  color: #888;
+  font-size: 0.95rem;
+}
+.manualForm {
+  display: flex;
+  width: 100%;
+  margin-bottom: 1.2rem;
+}
+.codeInput {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  border: 1.5px solid #e0e0f0;
+  border-radius: 10px 0 0 10px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+}
+.verifyBtn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 0 10px 10px 0;
+  padding: 0 1.2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.verifyBtn:active {
+  background: var(--primary-light);
+}
+.flashlightBtn {
+  background: #f3f0ff;
+  color: var(--primary);
+  border: none;
+  border-radius: 50px;
+  padding: 0.7rem 1.2rem;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.flashlightBtn:active {
+  background: #e6e0ff;
+}
+.flashlightIcon {
+  font-size: 1.3rem;
+}
+@media (min-width: 600px) {
+  .container {
+    /* Height is now controlled by app container */
+  }
+} 

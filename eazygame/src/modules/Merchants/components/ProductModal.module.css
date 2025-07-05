@@ -1,0 +1,112 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.2rem;
+}
+.productInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+.image {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  background: #f8f8fc;
+  border-radius: 12px;
+  margin-bottom: 0.3rem;
+}
+.emojiIcon {
+  font-size: 3.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: #f8f8fc;
+  border-radius: 12px;
+  margin-bottom: 0.3rem;
+}
+.name {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.category {
+  font-size: 0.9rem;
+  color: #888;
+}
+.price {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-top: 0.2rem;
+}
+.selectCardLabel {
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 0.3rem;
+  align-self: flex-start;
+}
+.cardsList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+}
+.cardBtn {
+  background: #f3f0ff;
+  color: #7b5cff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+.cardActive {
+  background: var(--primary);
+  color: #fff;
+  font-weight: 600;
+}
+.cardNumber {
+  font-size: 1rem;
+}
+.cardExpiry {
+  font-size: 0.95rem;
+  opacity: 0.8;
+}
+.payBtn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem 1.2rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 0.7rem;
+  cursor: pointer;
+  width: 100%;
+  transition: background 0.2s;
+}
+.payBtn:active {
+  background: var(--primary-light);
+}
+.successMsg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  color: #1dbf73;
+  font-weight: 600;
+  padding: 2rem 0;
+}
+.successIcon {
+  font-size: 2.5rem;
+} 

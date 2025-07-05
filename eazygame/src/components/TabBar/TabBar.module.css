@@ -1,0 +1,50 @@
+.tabBar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: #fff;
+    /* Remove shadow and top border-radius */
+    /* box-shadow: 0 -2px 12px rgba(123,92,255,0.07); */
+    /* border-top-left-radius: 16px; */
+    /* border-top-right-radius: 16px; */
+    padding: 0.5rem 0;
+    /* Remove sticky/fixed positioning */
+    position: static;
+    width: 100%;
+    z-index: 10;
+  }
+  
+  .tabBar button {
+    background: none;
+    border: none;
+    outline: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    color: #888;
+    padding: 0.25rem 0.5rem;
+    flex: 1;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .tabBar button.active, .tabBar button:focus {
+    color: var(--primary);
+  }
+  .icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.1rem;
+  }
+  .label {
+    font-size: 0.85rem;
+  }
+  
+  /* Desktop: let the .app-container control border-radius and shadow */
+  @media (min-width: 600px) {
+    .tabBar {
+      max-width: 100%;
+      margin: 0;
+      border-radius: 0;
+      box-shadow: none;
+    }
+  }
