@@ -86,6 +86,8 @@ export default function ScanQR({ isSignedIn, user, onProfileClick, cards, setCar
   // Handler for SendMoneyModal
   const handleSendMoney = async (recipient, card, amount) => {
     try {
+      console.log('Sending deduct request with:', { card_id: card.id, amount });
+      console.log('Card object:', card);
       // Deduct from card
       const deductRes = await fetch('http://localhost:3001/api/cards/deduct', {
         method: 'POST',

@@ -92,26 +92,31 @@ export default function Merchants({ isSignedIn, user, onProfileClick, cards, set
     // Deduct and create transaction for each card
     try {
       for (const alloc of payAlloc) {
-        // Deduct
-        const deductRes = await fetch('http://localhost:3001/api/cards/deduct', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ card_id: alloc.cardId, amount: Number(alloc.amount || 0) })
-        });
-        if (!deductRes.ok) throw new Error('Failed to deduct from card');
-        // Transaction
-        const txnRes = await fetch('http://localhost:3001/api/transactions', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            user_id: user?.id,
-            card_id: alloc.cardId,
-            name: `Purchase: ${modalProduct.name}`,
-            amount: -Number(alloc.amount || 0),
-            type: 'expense'
-          })
-        });
-        if (!txnRes.ok) throw new Error('Failed to create transaction');
+        const amount = Number(alloc.amount || 0);
+        // Only process cards with positive amounts
+        if (amount > 0) {
+          console.log('Merchants: Sending deduct request with:', { card_id: alloc.cardId, amount });
+          // Deduct
+          const deductRes = await fetch('http://localhost:3001/api/cards/deduct', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ card_id: alloc.cardId, amount })
+          });
+          if (!deductRes.ok) throw new Error('Failed to deduct from card');
+          // Transaction
+          const txnRes = await fetch('http://localhost:3001/api/transactions', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              user_id: user?.id,
+              card_id: alloc.cardId,
+              name: `Purchase: ${modalProduct.name}`,
+              amount: -amount,
+              type: 'expense'
+            })
+          });
+          if (!txnRes.ok) throw new Error('Failed to create transaction');
+        }
       }
       // Update cards in UI
       setCards(prevCards => prevCards.map(card => {

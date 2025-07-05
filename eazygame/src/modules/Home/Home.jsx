@@ -334,6 +334,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
         console.log('Processing payment for user:', userId);
         
         // Deduct from card
+        console.log('Home: Sending deduct request with:', { card_id: result.card.id, amount: result.amount });
         const deductResponse = await fetch('http://localhost:3001/api/cards/deduct', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },

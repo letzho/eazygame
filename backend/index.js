@@ -175,11 +175,20 @@ app.post('/api/cards/topup', async (req, res) => {
 // Deduct from card balance (for sending money)
 app.post('/api/cards/deduct', async (req, res) => {
   console.log('Deduct request received:', req.body);
+  console.log('Request headers:', req.headers);
+  console.log('Request method:', req.method);
   const { card_id, amount } = req.body;
 
-  if (!card_id || !amount) {
+  if (!card_id || amount === undefined || amount === null) {
     console.log('Missing required fields:', { card_id, amount });
+    console.log('card_id type:', typeof card_id, 'value:', card_id);
+    console.log('amount type:', typeof amount, 'value:', amount);
     return res.status(400).json({ error: 'Missing card_id or amount' });
+  }
+  
+  if (amount < 0) {
+    console.log('Invalid amount (negative):', amount);
+    return res.status(400).json({ error: 'Amount cannot be negative' });
   }
 
   try {
