@@ -41,7 +41,7 @@ export default function Cards({ isSignedIn, cards, setCards, onProfileClick, use
       // TODO: Implement edit card API
       alert('Edit card not implemented');
     } else {
-      await fetch('http://localhost:3001/api/cards', {
+      await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -52,7 +52,7 @@ export default function Cards({ isSignedIn, cards, setCards, onProfileClick, use
         })
       });
       // Refresh cards
-      fetch(`http://localhost:3001/api/cards?user_id=${userId}`)
+      fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards?user_id=${userId}`)
         .then(res => res.json())
         .then(data => {
           // Preserve the original order by sorting by ID to maintain consistency
