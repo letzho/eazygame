@@ -100,6 +100,7 @@ export async function signUp(username, password) {
   return await signIn(username, password);
 }
 
+
 export function signOut() {
   localStorage.removeItem('user_id');
 }
