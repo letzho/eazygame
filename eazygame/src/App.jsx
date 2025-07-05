@@ -52,7 +52,7 @@ export default function App() {
     }
   }, [isSignedIn]);
 
-  function validatePassword(password) {
+   function validatePassword(password) {
     if (password.length < 6) return 'Password must be at least 6 characters.';
     if (!/[a-zA-Z]/.test(password)) return 'Password must contain at least one letter.';
     if (!/[0-9]/.test(password)) return 'Password must contain at least one number.';
@@ -106,7 +106,6 @@ export default function App() {
     console.log('Tab changing from', tab, 'to', newTab);
     setTab(newTab);
   };
-
   return (
     <div className="app-bg">
       <div className="app-container">
