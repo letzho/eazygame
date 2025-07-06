@@ -97,14 +97,14 @@ export default function Merchants({ isSignedIn, user, onProfileClick, cards, set
         if (amount > 0) {
           console.log('Merchants: Sending deduct request with:', { card_id: alloc.cardId, amount });
                   // Deduct
-        const deductRes = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards/deduct', {
+        const deductRes = await fetch('http://localhost:3001/api/cards/deduct', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ card_id: alloc.cardId, amount })
           });
           if (!deductRes.ok) throw new Error('Failed to deduct from card');
           // Transaction
-          const txnRes = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/transactions', {
+          const txnRes = await fetch('http://localhost:3001/api/transactions', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

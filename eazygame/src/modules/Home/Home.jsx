@@ -55,7 +55,7 @@ function SplitBillModal(props) {
     setSending(true);
     setResult(null);
     try {
-              const res = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/split-bill', {
+              const res = await fetch('http://localhost:3001/api/split-bill', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -74,9 +74,9 @@ function SplitBillModal(props) {
         setSelectedFriends([]);
         setMessage('');
         // Refresh cards and transactions
-        const userId = getCurrentUser();
-        if (userId) {
-          fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards?user_id=${userId}`)
+                  const userId = getCurrentUser();
+          if (userId) {
+            fetch(`http://localhost:3001/api/cards?user_id=${userId}`)
             .then(res => res.json())
             .then(data => {
               const cardData = Array.isArray(data)
@@ -84,7 +84,7 @@ function SplitBillModal(props) {
                 : [];
               setCards(cardData);
             });
-          fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/transactions?user_id=${userId}`)
+          fetch(`http://localhost:3001/api/transactions?user_id=${userId}`)
             .then(res => res.json())
             .then(data => setTransactions(data));
         }
@@ -184,11 +184,11 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
 
   useEffect(() => {
     const userId = getCurrentUser();
-    if (userId) {
-      fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/transactions?user_id=${userId}`)
-        .then(res => res.json())
-        .then(data => setTransactions(data));
-      fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards?user_id=${userId}`)
+          if (userId) {
+        fetch(`http://localhost:3001/api/transactions?user_id=${userId}`)
+          .then(res => res.json())
+          .then(data => setTransactions(data));
+        fetch(`http://localhost:3001/api/cards?user_id=${userId}`)
         .then(res => res.json())
         .then(data => {
           const cardData = Array.isArray(data)
@@ -225,7 +225,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
       return;
     }
     try {
-      const res = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards', {
+      const res = await fetch('http://localhost:3001/api/cards', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -241,7 +241,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
         return;
       }
       // Refresh cards
-      fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards?user_id=${userId}`)
+              fetch(`http://localhost:3001/api/cards?user_id=${userId}`)
         .then(res => res.json())
         .then(data => {
           const cardData = Array.isArray(data)
@@ -275,7 +275,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
     try {
       console.log('Sending top-up request:', { card_id: topUpCardId, amount });
       
-      const response = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards/topup', {
+      const response = await fetch('http://localhost:3001/api/cards/topup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ card_id: topUpCardId, amount })
@@ -291,7 +291,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
       
       // Refresh cards and transactions
       const userId = getCurrentUser();
-              fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards?user_id=${userId}`)
+              fetch(`http://localhost:3001/api/cards?user_id=${userId}`)
         .then(res => res.json())
         .then(data => {
           if (Array.isArray(data)) {
@@ -335,7 +335,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
         
         // Deduct from card
         console.log('Home: Sending deduct request with:', { card_id: result.card.id, amount: result.amount });
-        const deductResponse = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards/deduct', {
+        const deductResponse = await fetch('https://localhost:3001/api/cards/deduct', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ 
@@ -352,7 +352,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
         }
         
         // Add transaction record
-        const transactionResponse = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/transactions', {
+        const transactionResponse = await fetch('https://localhost:3001/api/transactions', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -382,7 +382,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
         
         refreshTransactions(userId);
         
-        fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/transactions?user_id=${userId}`)
+        fetch(`https://localhost:3001/api/transactions?user_id=${userId}`)
           .then(res => res.json())
           .then(data => setTransactions(data));
         
@@ -402,7 +402,7 @@ export default function Home({ isSignedIn, user, cards, setCards, onProfileClick
 
   // Add a helper function to refresh transactions
   const refreshTransactions = (userId) => {
-    fetch(`https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/transactions?user_id=${userId}`)
+    fetch(`https://localhost:3001/api/transactions?user_id=${userId}`)
       .then(res => res.json())
       .then(data => setTransactions(data));
   };

@@ -89,14 +89,14 @@ export default function ScanQR({ isSignedIn, user, onProfileClick, cards, setCar
       console.log('Sending deduct request with:', { card_id: card.id, amount });
       console.log('Card object:', card);
       // Deduct from card
-      const deductRes = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/cards/deduct', {
+      const deductRes = await fetch('http://localhost:3001/api/cards/deduct', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ card_id: card.id, amount })
       });
       if (!deductRes.ok) throw new Error('Failed to deduct from card');
       // Add transaction
-      const txnRes = await fetch('https://eazygamepay-backend-f9cb7b9223fe.herokuapp.com/api/transactions', {
+      const txnRes = await fetch('http://localhost:3001/api/transactions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
