@@ -9,8 +9,21 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'https://eazygamepay-52b0185fda6d.herokuapp.com',
+    'https://eazygamepay-frontend.herokuapp.com'
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
+
+// Handle preflight requests
+app.options('*', cors());
 
 // Test route
 app.get('/', (req, res) => {
@@ -27,6 +40,50 @@ app.get('/api/test-db', async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ error: 'Database connection failed', details: error.message });
+  }
+});
+
+// Check database schema
+app.get('/api/db-schema', async (req, res) => {
+  try {
+    // Check if tables exist
+    const tablesResult = await pool.query(`
+      SELECT table_name 
+      FROM information_schema.tables 
+      WHERE table_schema = 'public' 
+      AND table_name IN ('users', 'cards', 'transactions')
+      ORDER BY table_name
+    `);
+    
+    const tableNames = tablesResult.rows.map(row => row.table_name);
+    
+    // Check table structures
+    const schemaInfo = {};
+    for (const tableName of tableNames) {
+      const columnsResult = await pool.query(`
+        SELECT column_name, data_type, is_nullable
+        FROM information_schema.columns 
+        WHERE table_name = $1
+        ORDER BY ordinal_position
+      `, [tableName]);
+      schemaInfo[tableName] = columnsResult.rows;
+    }
+    
+    // Count records in each table
+    const counts = {};
+    for (const tableName of tableNames) {
+      const countResult = await pool.query(`SELECT COUNT(*) FROM ${tableName}`);
+      counts[tableName] = parseInt(countResult.rows[0].count);
+    }
+    
+    res.json({
+      tables_exist: tableNames,
+      schema: schemaInfo,
+      record_counts: counts,
+      all_tables_present: tableNames.length === 3
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Schema check failed', details: error.message });
   }
 });
 
@@ -124,77 +181,7 @@ app.post('/api/register', async (req, res) => {
     res.status(500).json({ error: 'Registration failed', details: err.message });
   }
 });
-// Test database connection
-app.get('/api/test-db', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ 
-      message: 'Database connected successfully!',
-      timestamp: result.rows[0].now 
-    });
-  } catch (error) {
-    res.status(500).json({ error: 'Database connection failed', details: error.message });
-  }
-});
 
-->
-
-// Test database connection
-app.get('/api/test-db', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.json({ 
-      message: 'Database connected successfully!',
-      timestamp: result.rows[0].now 
-    });
-  } catch (error) {
-    res.status(500).json({ error: 'Database connection failed', details: error.message });
-  }
-});
-
-// Check database schema
-app.get('/api/db-schema', async (req, res) => {
-  try {
-    // Check if tables exist
-    const tablesResult = await pool.query(`
-      SELECT table_name 
-      FROM information_schema.tables 
-      WHERE table_schema = 'public' 
-      AND table_name IN ('users', 'cards', 'transactions')
-      ORDER BY table_name
-    `);
-    
-    const tableNames = tablesResult.rows.map(row => row.table_name);
-    
-    // Check table structures
-    const schemaInfo = {};
-    for (const tableName of tableNames) {
-      const columnsResult = await pool.query(`
-        SELECT column_name, data_type, is_nullable
-        FROM information_schema.columns 
-        WHERE table_name = $1
-        ORDER BY ordinal_position
-      `, [tableName]);
-      schemaInfo[tableName] = columnsResult.rows;
-    }
-    
-    // Count records in each table
-    const counts = {};
-    for (const tableName of tableNames) {
-      const countResult = await pool.query(`SELECT COUNT(*) FROM ${tableName}`);
-      counts[tableName] = parseInt(countResult.rows[0].count);
-    }
-    
-    res.json({
-      tables_exist: tableNames,
-      schema: schemaInfo,
-      record_counts: counts,
-      all_tables_present: tableNames.length === 3
-    });
-  } catch (error) {
-    res.status(500).json({ error: 'Schema check failed', details: error.message });
-  }
-});
 // Top up card balance
 app.post('/api/cards/topup', async (req, res) => {
   console.log('Top-up request received:', req.body);
