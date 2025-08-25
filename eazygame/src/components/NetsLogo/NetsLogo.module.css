@@ -1,0 +1,67 @@
+.netsLogoContainer {
+  position: relative;
+  background: white;
+  border-radius: 8px;
+  padding: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+}
+
+.netsLogo {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  border-radius: 4px;
+  display: block;
+}
+
+/* Sizes */
+.small .netsLogo {
+  width: 24px;
+  height: 24px;
+}
+
+.small {
+  padding: 3px;
+  border-radius: 6px;
+}
+
+.medium .netsLogo {
+  width: 32px;
+  height: 32px;
+}
+
+.medium {
+  padding: 4px;
+  border-radius: 8px;
+}
+
+.large .netsLogo {
+  width: 40px;
+  height: 40px;
+}
+
+.large {
+  padding: 5px;
+  border-radius: 10px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .netsLogoContainer {
+    padding: 3px;
+    border-radius: 6px;
+  }
+  
+  .netsLogo {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .notificationDot {
+    width: 10px;
+    height: 10px;
+    top: -3px;
+    right: -3px;
+  }
+}

@@ -1,0 +1,755 @@
+/* Game Overlay */
+.gameOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0;
+}
+
+.gameContainer {
+  background: transparent;
+  border-radius: 24px;
+  width: 100%;
+  max-width: 430px;
+  height: 95vh;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 2px 24px rgba(123,92,255,0.08);
+}
+
+/* Amount Input Screen */
+.amountInputScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  flex-direction: column;
+  z-index: 15;
+}
+
+.amountInputHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  color: white;
+}
+
+.amountInputTitle {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.amountInputContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  padding: 20px;
+  gap: 20px;
+  overflow-y: auto;
+  max-height: 100%;
+  min-height: 0;
+  width: 100%;
+}
+
+.recipientInfo {
+  text-align: center;
+  color: white;
+  background: rgba(255,255,255,0.1);
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.recipientInfo h3 {
+  margin: 0 0 10px 0;
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.cardInfo {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.messageInfo {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  font-style: italic;
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #4ade80;
+}
+
+.amountForm {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 100%;
+}
+
+.amountLabel {
+  color: white;
+  font-size: 1.1rem;
+}
+
+/* Card Selection Grid */
+.cardSelectionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.cardOption {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.cardOption:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cardOptionIcon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 8px;
+  color: white;
+}
+
+.cardOptionInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cardOptionNumber {
+  font-weight: 600;
+  font-size: 14px;
+  color: #333;
+}
+
+.cardOptionBalance {
+  font-size: 16px;
+  font-weight: 700;
+  color: #4ade80;
+}
+
+.cardOptionType {
+  font-size: 12px;
+  color: #666;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Recipient Selection Grid */
+.recipientSelectionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  width: 100%;
+  max-height: 400px;
+  overflow-y: auto;
+  padding: 10px 0;
+}
+
+.recipientOption {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recipientOption:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.recipientOptionIcon {
+  font-size: 24px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  border-radius: 8px;
+  color: white;
+}
+
+.recipientOptionInfo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.recipientOptionName {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+}
+
+.recipientOptionEmail {
+  font-size: 14px;
+  color: #666;
+}
+
+.amountInput {
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  background: rgba(255,255,255,0.9);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.amountInput:focus {
+  outline: none;
+  background: white;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+  transform: translateY(-2px);
+}
+
+.startGameButton {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+.startGameButton:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+}
+
+.startGameButton:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Avatar Selection Grid - Clean and Simple */
+.avatarSelectionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+  margin-top: 20px;
+  padding-bottom: 40px;
+}
+
+.avatarOption {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: 130px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.avatarOption:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.avatarOptionEmoji {
+  font-size: 2.2rem;
+  border-radius: 10px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+}
+
+.avatarOptionContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  flex: 1;
+}
+
+.avatarOptionName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.avatarOptionType {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  margin-bottom: 2px;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.avatarOptionPower {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-bottom: 2px;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+.avatarOptionRarity {
+  font-size: 0.6rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* Game Screen */
+.gameScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+}
+
+.gameHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  color: white;
+}
+
+.gameTitle {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.gameContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+}
+
+.avatarInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  color: white;
+  background: rgba(0,0,0,0.3);
+  padding: 10px 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.avatarStats {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.avatarName {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: white;
+}
+
+.avatarRarity {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+.gameStats {
+  display: flex;
+  gap: 15px;
+  font-size: 0.9rem;
+  opacity: 0.9;
+  color: white;
+}
+
+.instructions {
+  text-align: center;
+  margin-bottom: 15px;
+  color: white;
+  background: rgba(0,0,0,0.3);
+  padding: 10px 15px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+}
+
+.instructions p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.closeButton {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.closeButton:hover {
+  background: rgba(255,255,255,0.3);
+  transform: scale(1.1);
+}
+
+.sceneBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  z-index: 1;
+}
+
+.gameArea {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 400px;
+  height: 200px;
+  overflow: visible;
+  margin: 0 auto;
+  margin-left: 15%;
+}
+
+.avatar2D {
+  width: 100px;
+  height: 100px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  border: 3px solid rgba(255,255,255,0.3);
+  transition: all 0.3s ease;
+}
+
+.avatarEmoji {
+  font-size: 3rem;
+  filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.3));
+}
+
+.avatarName {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+  text-align: center;
+  margin-top: 10px;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.ball2D {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #FF6B6B, #FF8E8E);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
+  transition: all 0.3s ease;
+  position: absolute;
+  z-index: 10;
+}
+
+.ball2D:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
+}
+
+.ballInner {
+  width: 45px;
+  height: 45px;
+  background: linear-gradient(135deg, #FF8E8E, #FF6B6B);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 2px 4px rgba(255,255,255,0.3);
+}
+
+.ballCore {
+  font-size: 1.5rem;
+  color: white;
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.3));
+}
+
+/* Result Modal */
+.resultModal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: white;
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  text-align: center;
+  z-index: 30;
+  max-width: 80vw;
+  max-height: 80vh;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.resultContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  max-width: 100%;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.resultTitle {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #333;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.resultMessage {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+
+.specialEffects {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { box-shadow: 0 0 10px rgba(102, 126, 234, 0.5); }
+  to { box-shadow: 0 0 20px rgba(102, 126, 234, 0.8); }
+}
+
+/* Mobile Responsive Adjustments */
+@media (max-width: 600px) {
+  .gameOverlay {
+    padding: 0;
+  }
+  
+  .gameContainer {
+    max-width: 100vw;
+    width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  
+  .amountInputTitle {
+    font-size: 1.5rem;
+  }
+  
+  .recipientInfo h3 {
+    font-size: 1.1rem;
+  }
+  
+  .amountInput {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+  
+  .startGameButton {
+    font-size: 1rem;
+    padding: 12px 25px;
+  }
+  
+  .gameTitle {
+    font-size: 1.3rem;
+  }
+  
+
+  
+  .senderAvatar {
+    left: 10px;
+  }
+  
+  .recipientAvatar {
+    right: 10px;
+  }
+  
+  .avatar2D {
+    width: 80px;
+    height: 80px;
+  }
+  
+  .avatarEmoji {
+    font-size: 2rem;
+  }
+  
+  .avatarName {
+    font-size: 0.8rem;
+  }
+  
+  .avatarSelectionGrid {
+    gap: 10px;
+  }
+  
+  .avatarOption {
+    height: 120px;
+    padding: 10px;
+  }
+  
+  .avatarOptionEmoji {
+    font-size: 2rem;
+    width: 45px;
+    height: 45px;
+  }
+  
+  .avatarOptionName {
+    font-size: 0.8rem;
+  }
+  
+  .avatarOptionType {
+    font-size: 0.65rem;
+  }
+  
+  .avatarOptionPower {
+    font-size: 0.65rem;
+  }
+  
+  .avatarOptionRarity {
+    font-size: 0.55rem;
+  }
+  
+  .resultModal {
+    width: 260px;
+    padding: 15px;
+    max-width: 90vw;
+    max-height: 80vh;
+    margin: 0 auto;
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 30 !important;
+  }
+  
+  .resultTitle {
+    font-size: 1.2rem;
+  }
+  
+  .resultMessage {
+    font-size: 0.9rem;
+  }
+  
+  .amountInfo {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    margin-top: 8px;
+    color: white;
+  }
+}

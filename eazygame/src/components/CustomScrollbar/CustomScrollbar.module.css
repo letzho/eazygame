@@ -1,0 +1,214 @@
+.scrollContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+
+.content::-webkit-scrollbar {
+  display: none; /* Chrome/Safari/Opera */
+}
+
+.scrollbar {
+  position: absolute;
+  top: 0;
+  right: 4px;
+  width: 6px;
+  height: 100%;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.scrollbar.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.scrollbarTrack {
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  position: relative;
+}
+
+.scrollbarThumb {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 61, 166, 0.6);
+  border-radius: 3px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  min-height: 20px;
+}
+
+.scrollbarThumb:hover {
+  background: rgba(0, 61, 166, 0.8);
+  width: 8px;
+  margin-left: -1px;
+}
+
+.scrollbarThumb:active {
+  background: rgba(0, 61, 166, 1);
+  width: 10px;
+  margin-left: -2px;
+}
+
+/* Size variants */
+.small .scrollbar {
+  width: 4px;
+}
+
+.small .scrollbarThumb {
+  min-height: 16px;
+}
+
+.small .scrollbarThumb:hover {
+  width: 6px;
+  margin-left: -1px;
+}
+
+.small .scrollbarThumb:active {
+  width: 8px;
+  margin-left: -2px;
+}
+
+.medium .scrollbar {
+  width: 6px;
+}
+
+.medium .scrollbarThumb {
+  min-height: 20px;
+}
+
+.medium .scrollbarThumb:hover {
+  width: 8px;
+  margin-left: -1px;
+}
+
+.medium .scrollbarThumb:active {
+  width: 10px;
+  margin-left: -2px;
+}
+
+.large .scrollbar {
+  width: 8px;
+}
+
+.large .scrollbarThumb {
+  min-height: 24px;
+}
+
+.large .scrollbarThumb:hover {
+  width: 10px;
+  margin-left: -1px;
+}
+
+.large .scrollbarThumb:active {
+  width: 12px;
+  margin-left: -2px;
+}
+
+/* Color variants */
+.primary .scrollbarThumb {
+  background: rgba(0, 61, 166, 0.6);
+}
+
+.primary .scrollbarThumb:hover {
+  background: rgba(0, 61, 166, 0.8);
+}
+
+.primary .scrollbarThumb:active {
+  background: rgba(0, 61, 166, 1);
+}
+
+.secondary .scrollbarThumb {
+  background: rgba(102, 126, 234, 0.6);
+}
+
+.secondary .scrollbarThumb:hover {
+  background: rgba(102, 126, 234, 0.8);
+}
+
+.secondary .scrollbarThumb:active {
+  background: rgba(102, 126, 234, 1);
+}
+
+.dark .scrollbarThumb {
+  background: rgba(55, 65, 81, 0.6);
+}
+
+.dark .scrollbarThumb:hover {
+  background: rgba(55, 65, 81, 0.8);
+}
+
+.dark .scrollbarThumb:active {
+  background: rgba(55, 65, 81, 1);
+}
+
+.light .scrollbarThumb {
+  background: rgba(156, 163, 175, 0.6);
+}
+
+.light .scrollbarThumb:hover {
+  background: rgba(156, 163, 175, 0.8);
+}
+
+.light .scrollbarThumb:active {
+  background: rgba(156, 163, 175, 1);
+}
+
+/* Horizontal orientation */
+.horizontal {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .scrollbar {
+    right: 2px;
+  }
+  
+  .medium .scrollbar {
+    width: 4px;
+  }
+  
+  .medium .scrollbarThumb:hover {
+    width: 6px;
+  }
+  
+  .medium .scrollbarThumb:active {
+    width: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .scrollbar {
+    right: 1px;
+  }
+  
+  .medium .scrollbar {
+    width: 3px;
+  }
+  
+  .medium .scrollbarThumb:hover {
+    width: 5px;
+  }
+  
+  .medium .scrollbarThumb:active {
+    width: 7px;
+  }
+}

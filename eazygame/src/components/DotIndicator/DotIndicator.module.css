@@ -1,0 +1,134 @@
+.dotContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1rem 0;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  margin: 0.5rem 0;
+  border: 2px solid rgba(0, 61, 166, 0.4);
+  min-height: 20px;
+}
+
+/* Orientation */
+.horizontal {
+  flex-direction: row;
+}
+
+.vertical {
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+/* Sizes */
+.small .dot {
+  width: 12px;
+  height: 12px;
+}
+
+.medium .dot {
+  width: 14px;
+  height: 14px;
+}
+
+.large .dot {
+  width: 16px;
+  height: 16px;
+}
+
+/* Colors */
+.primary {
+  background: rgba(0, 61, 166, 0.8);
+  border: 2px solid rgba(0, 61, 166, 0.6);
+}
+
+.primary.active {
+  background: #003da6;
+  border-color: #003da6;
+  box-shadow: 0 0 15px rgba(0, 61, 166, 0.8);
+}
+
+.secondary {
+  background: rgba(102, 126, 234, 0.3);
+  border: 1px solid rgba(102, 126, 234, 0.2);
+}
+
+.secondary.active {
+  background: #667eea;
+  border-color: #667eea;
+  box-shadow: 0 0 8px rgba(102, 126, 234, 0.4);
+}
+
+.white {
+  background: rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.white.active {
+  background: white;
+  border-color: white;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+}
+
+.dark {
+  background: rgba(2, 136, 245, 0.3);
+  border: 2px solid rgba(2, 136, 245, 0.4);
+}
+
+.dark.active {
+  background: rgba(2, 136, 245, 0.6);
+  border-color: rgba(2, 136, 245, 0.9);
+  box-shadow: 
+    0 0 15px rgba(11, 225, 179, 0.8),
+    0 0 30px rgba(11, 225, 179, 0.6),
+    0 0 45px rgba(11, 225, 179, 0.4);
+}
+
+/* Dot styles */
+.dot {
+  border-radius: 50%;
+  border: none;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Animation for active dot */
+.dot.active {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .dotContainer {
+    gap: 0.3rem;
+  }
+  
+  .small .dot {
+    width: 3px;
+    height: 3px;
+  }
+  
+  .medium .dot {
+    width: 5px;
+    height: 5px;
+  }
+  
+  .large .dot {
+    width: 7px;
+    height: 7px;
+  }
+}
