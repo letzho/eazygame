@@ -9,17 +9,31 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors({
-  origin: [
-    'http://localhost:3000',
-    'http://localhost:5173',
-    'https://eazygamepay-52b0185fda6d.herokuapp.com',
-    'https://eazygamepay-frontend.herokuapp.com'
-  ],
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+// app.use(cors({
+//   origin: [
+//     'http://localhost:3000',
+//     'http://localhost:5173',
+//     'https://eazygamepay-52b0185fda6d.herokuapp.com',
+//     'https://eazygamepay-frontend.herokuapp.com'
+//   ],
+//   credentials: true,
+//   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+//   allowedHeaders: ['Content-Type', 'Authorization']
+// }));
+
+app.use(express.json());
+
+// Optional: a health check under /api
+app.get("/api/health", (req, res) => res.json({ ok: true }));
+
+// Serve Vite build
+const clientBuild = path.join(__dirname, "..", "eazygame", "dist");
+app.use(express.static(clientBuild));
+app.get("*", (_, res) => {
+  res.sendFile(path.join(clientBuild, "index.html"));
+});
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 app.use(express.json());
 
 // Handle preflight requests
